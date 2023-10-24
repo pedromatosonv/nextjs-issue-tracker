@@ -1,6 +1,12 @@
+"use client";
+
+import cn from "mxcn";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   const links = [
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
@@ -13,7 +19,10 @@ export default function Navbar() {
         {links.map((link) => (
           <Link
             key={link.href}
-            className="text-zinc-500 hover:text-zinc-800 transition-colors"
+            className={cn(
+              "hover:text-zinc-800 transition-colors text-zinc-500",
+              pathname === link.href && "text-zinc-900"
+            )}
             href={link.href}
           >
             {link.label}
