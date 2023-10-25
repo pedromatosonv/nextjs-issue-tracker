@@ -9,6 +9,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
@@ -61,19 +62,11 @@ export default function NewIssuePage() {
       >
         <div className="space-y-2 flex flex-col">
           <TextField.Input placeholder="Title" {...register("title")} />
-          {errors.title && (
-            <Text color="red" size="1">
-              {errors.title.message}
-            </Text>
-          )}
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </div>
         <div className="space-y-2 flex flex-col">
           <TextArea placeholder="Description" {...register("description")} />
-          {errors.description && (
-            <Text color="red" size="1">
-              {errors.description.message}
-            </Text>
-          )}
+          <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </div>
         <Button>Create issue</Button>
       </form>
