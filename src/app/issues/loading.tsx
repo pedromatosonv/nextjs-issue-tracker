@@ -1,7 +1,6 @@
+import { Skeleton } from "@/app/components";
 import { Table } from "@radix-ui/themes";
-import Skeleton from "react-loading-skeleton";
 import IssueListingActionBar from "./IssueListingActionBar";
-import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Loading() {
   const issues = [1, 2, 3, 4, 5];
