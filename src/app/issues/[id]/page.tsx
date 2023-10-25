@@ -21,11 +21,13 @@ export default async function IssuePage({
   return (
     <div>
       <Heading>{issue.title}</Heading>
-      <Flex gap="3" my="4">
+      <Flex gap="3" my="3">
         <IssueStatusBadge status={issue.status} />
         <Text>{issue.createdAt.toDateString()}</Text>
       </Flex>
-      <Card>{issue.description}</Card>
+      <Card className="p-3" mt="5">
+        {issue.description}
+      </Card>
     </div>
   );
 }
