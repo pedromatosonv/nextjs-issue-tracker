@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
@@ -19,7 +20,7 @@ export default function NewIssuePage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IssueForm>({
     resolver: zodResolver(createIssueSchema),
   });
@@ -34,8 +35,6 @@ export default function NewIssuePage() {
       );
     }
   }
-
-  console.log(errors);
 
   return (
     <div className="max-w-xl space-y-3">
@@ -68,7 +67,9 @@ export default function NewIssuePage() {
           <TextArea placeholder="Description" {...register("description")} />
           <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </div>
-        <Button>Create issue</Button>
+        <Button disabled={isSubmitting}>
+          Create issue {isSubmitting && <Spinner />}
+        </Button>
       </form>
     </div>
   );
