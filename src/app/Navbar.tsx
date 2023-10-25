@@ -3,6 +3,7 @@
 import cn from "mxcn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AiFillBug } from "react-icons/ai";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -14,7 +15,9 @@ export default function Navbar() {
 
   return (
     <nav className="flex border-b mb-5 px-5 h-14 items-center space-x-6">
-      <Link href="/">Logo</Link>
+      <Link href="/">
+        <AiFillBug />
+      </Link>
       <ul className="flex space-x-6">
         {links.map((link) => (
           <Link
