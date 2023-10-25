@@ -1,19 +1,17 @@
 import prisma from "@/prisma/client";
-import { Button, Table } from "@radix-ui/themes";
-import Link from "next/link";
+import { Table } from "@radix-ui/themes";
 import { IssueStatusBadge } from "@/app/components/IssueStatusBadge";
+import IssueListingActionBar from "./IssueListingActionBar";
 
 export default async function Issues() {
   const issues = await prisma.issue.findMany();
 
-  console.log(issues);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   return (
     <div>
       <div className="mb-5">
-        <Button>
-          <Link href="/issues/new">New issue</Link>
-        </Button>
+        <IssueListingActionBar />
       </div>
       <div>
         <Table.Root variant="surface">
@@ -42,7 +40,7 @@ export default async function Issues() {
                   </div>
                 </Table.RowHeaderCell>
                 <Table.Cell className="hidden md:table-cell">
-                  <IssueStatusBadge status={issue.status} />
+                  {<IssueStatusBadge status={issue.status} />}
                 </Table.Cell>
                 <Table.Cell className="hidden md:table-cell">
                   {issue.createdAt.toDateString()}
