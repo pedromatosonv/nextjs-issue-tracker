@@ -12,14 +12,12 @@ export default async function IssuePage({
     where: { id: params.id },
   });
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
-
   if (!issue) {
     notFound();
   }
 
   return (
-    <div>
+    <div className="max-w-xl">
       <Heading>{issue.title}</Heading>
       <Flex gap="3" my="3">
         <IssueStatusBadge status={issue.status} />

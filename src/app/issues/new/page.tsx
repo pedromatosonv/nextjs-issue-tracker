@@ -14,7 +14,7 @@ import { Spinner } from "@/app/components/Spinner";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
-export default async function NewIssuePage() {
+export default function NewIssuePage() {
   const router = useRouter();
   const [validationErrors, setValidationErrors] = useState<string[]>();
   const {

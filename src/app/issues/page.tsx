@@ -6,8 +6,6 @@ import { IssueStatusBadge, Link } from "@/app/components";
 export default async function Issues() {
   const issues = await prisma.issue.findMany();
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
   return (
     <div>
       <div className="mb-5">
