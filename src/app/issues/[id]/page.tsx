@@ -1,9 +1,9 @@
 import { IssueStatusBadge } from "@/app/components";
 import prisma from "@/prisma/client";
-import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
-import Link from "next/link";
+import { Box, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
-import { HiPencilAlt } from "react-icons/hi";
+import EditIssueButton from "./EditIssueButton";
+import DeleteIssueButton from "./DeleteIssueButton";
 
 interface Props {
   params: { id: string };
@@ -19,17 +19,17 @@ export default async function IssueDetailPage({ params }: Props) {
   }
 
   return (
-    <Box className="max-w-xl">
+    <Box>
       <Heading>{issue.title}</Heading>
       <Flex gap="3" my="3" justify="between">
         <Flex gap="3" align="center">
           <IssueStatusBadge status={issue.status} />
           <Text>{issue.createdAt.toDateString()}</Text>
         </Flex>
-        <Button>
-          <HiPencilAlt />
-          <Link href={`/issues/${params.id}/edit`}>Edit</Link>
-        </Button>
+        <Box className="space-x-2">
+          <EditIssueButton issueId={params.id} />
+          <DeleteIssueButton issueId={params.id} />
+        </Box>
       </Flex>
       <Card className="p-3" mt="5">
         {issue.description}

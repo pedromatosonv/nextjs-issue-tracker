@@ -32,3 +32,15 @@ export async function PATCH(
   
   return NextResponse.json(updatedIssue);
 }
+
+export async function DELETE(request: NextRequest, { params }: { params: { id: string }}) {
+  const issue = prisma.issue.findUnique({ where: { id: params.id }});
+
+  if (!issue) {
+    return NextResponse.json({ error: 'Invalid issue '}, { status: 404 });
+  }
+
+  await prisma.issue.delete({ where: { id: params.id }})
+
+  return NextResponse.json({ message: 'Issue successfully deleted! '}, { status: 200 });
+}
