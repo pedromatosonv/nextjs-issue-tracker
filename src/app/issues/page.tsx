@@ -3,7 +3,7 @@ import { Table } from "@radix-ui/themes";
 import IssueListingActionBar from "./IssueListingActionBar";
 import { IssueStatusBadge, Link } from "@/app/components";
 
-export default async function Issues() {
+export default async function IssuesPage() {
   const issues = await prisma.issue.findMany();
 
   return (

@@ -9,7 +9,7 @@ interface Props {
   params: { id: string };
 }
 
-export default async function IssuePage({ params }: Props) {
+export default async function IssueDetailPage({ params }: Props) {
   const issue = await prisma.issue.findUnique({
     where: { id: params.id },
   });
