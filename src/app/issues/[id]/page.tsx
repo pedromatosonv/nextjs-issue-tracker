@@ -32,11 +32,11 @@ export default async function IssueDetailPage({ params }: Props) {
           <Text>{issue.createdAt.toDateString()}</Text>
         </Flex>
         {session && (
-          <Box className="space-x-2">
+          <Flex gap="2" align="center">
             <AssigneeSelect />
             <EditIssueButton issueId={params.id} />
             <DeleteIssueButton issueId={params.id} />
-          </Box>
+          </Flex>
         )}
       </Flex>
       <Card className="p-3" mt="5">
