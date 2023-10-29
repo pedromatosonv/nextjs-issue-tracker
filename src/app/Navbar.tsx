@@ -1,5 +1,6 @@
 "use client";
 
+import { Skeleton } from "@/app/components";
 import {
   Avatar,
   Box,
@@ -63,7 +64,7 @@ function AuthStatus() {
   const { status, data: session } = useSession();
 
   if (status === "loading") {
-    return;
+    return <Skeleton width="3rem" />;
   }
 
   if (status === "unauthenticated") {
